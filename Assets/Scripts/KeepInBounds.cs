@@ -6,12 +6,9 @@ using UnityEngine;
 // Created with help from
 // http://answers.unity3d.com/questions/501893/calculating-2d-camera-bounds.html
 public class KeepInBounds : MonoBehaviour {
-
-    [SerializeField]
-    private float x;
-    [SerializeField]
-    private float y;
-
+    
+    public float x;
+    public float y;
 
 
     private void LateUpdate() {
