@@ -36,8 +36,6 @@ public class CoordinateDisplay : MonoBehaviour {
         else
         {
             Vector3 coords = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Debug.Log("Mouse coords x: " + coords.x);
-            Debug.Log("Mouse coords y: " + coords.y);
             x.text = "X: " + Math.Round(coords.x, 2);
             y.text = "Y: " + Math.Round(coords.y, 2);
             tooltip.text = "Current mouse coordinates";

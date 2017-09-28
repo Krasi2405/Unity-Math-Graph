@@ -11,7 +11,7 @@ public class Dot : MonoBehaviour {
 
 
     private SpriteRenderer spriteRenderer;
-    private Color currentColor;
+    private Color currentColor = Color.black;
 
     private void Awake()
     {
@@ -46,13 +46,6 @@ public class Dot : MonoBehaviour {
     private void GetPropertiesOfSpritePrefab(GameObject obj2)
     {
         spriteRenderer.sprite = obj2.GetComponent<SpriteRenderer>().sprite;
-        if (currentColor == null)
-        {
-            spriteRenderer.color = obj2.GetComponent<SpriteRenderer>().color;
-        }
-        else
-        {
-            spriteRenderer.color = currentColor;
-        }
+        spriteRenderer.color = currentColor;
     }
 }

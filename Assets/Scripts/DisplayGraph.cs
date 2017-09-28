@@ -9,26 +9,17 @@ public class DisplayGraph : MonoBehaviour {
     public Transform dotContainer;
     public GameObject dot;
 
-    public float valueStart;
-    public float valueEnd;
-    public float valueStep;
-    public string mathFunction;
+    private List<GameObject> dotsOnScreen;
 
-    [SerializeField]
-    private InputField inputField;
-
-    private List<Dot> dotsOnScreen;
-
-    private Color[] colors = { Color.black, Color.blue, Color.red, Color.yellow, Color.green};
+    private Color[] colors = {Color.blue, Color.red, Color.yellow, Color.green};
     private int currentColorIndex = 0;
 
-	void Start () {
-        GenerateGraph("Pow(x, 2)");
-        GenerateGraph("Pow(x, 2) + 1");
-        GenerateGraph("Pow(x, 2) - 1");
+    private void Start()
+    {
+        dotsOnScreen = new List<GameObject>();
     }
 
-    public void GenerateGraph(string expression)
+    public void GenerateGraph(float valueStart, float valueEnd, float valueStep, string expression)
     {
         Color graphColor = GetRandomColor();
         for (float i = valueStart; i <= valueEnd; i += valueStep)
@@ -40,6 +31,7 @@ public class DisplayGraph : MonoBehaviour {
             d.transform.SetParent(dotContainer);
             d.GetComponent<Dot>().SetObjectColor(graphColor);
             d.tag = "Value";
+            dotsOnScreen.Add(d);
         }
     }
 
@@ -52,5 +44,13 @@ public class DisplayGraph : MonoBehaviour {
             currentColorIndex = 0;
         }
         return color;
+    }
+
+    public void DeleteGraphs()
+    {
+        foreach(GameObject dot in dotsOnScreen)
+        {
+            Destroy(dot);
+        }
     }
 }

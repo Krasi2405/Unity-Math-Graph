@@ -7,10 +7,8 @@ public class CameraMovement : MonoBehaviour {
 
     [SerializeField]
     public float cameraBaseMoveSpeed = 0.1f;
-    
     [SerializeField]
     public float cameraScaleSpeed = 0.05f;
-
     [SerializeField]
     public float cameraMaxSize = 25f;
     [SerializeField]
@@ -28,8 +26,6 @@ public class CameraMovement : MonoBehaviour {
 
         if (IsShiftClicked())
         {
-            
-
             if (Input.GetKey(KeyCode.W) && camera.orthographicSize < cameraMaxSize)
             {
                 camera.orthographicSize += cameraScaleSpeed;
@@ -65,11 +61,11 @@ public class CameraMovement : MonoBehaviour {
     }
 
 
-
     public bool IsShiftClicked()
     {
         return Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
     }
+
 
     public float GetCameraMoveSpeed()
     {
