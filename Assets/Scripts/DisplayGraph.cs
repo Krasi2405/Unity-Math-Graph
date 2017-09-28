@@ -38,7 +38,7 @@ public class DisplayGraph : MonoBehaviour {
             float value = float.Parse(e.Evaluate().ToString());
             GameObject d = Instantiate(dot, new Vector3(i, value, 0), Quaternion.identity);
             d.transform.SetParent(dotContainer);
-            // d.GetComponent<Dot>().SetObjectColor(graphColor);
+            d.GetComponent<Dot>().SetObjectColor(graphColor);
             d.tag = "Value";
         }
     }
