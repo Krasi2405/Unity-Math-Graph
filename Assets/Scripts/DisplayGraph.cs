@@ -17,7 +17,8 @@ public class DisplayGraph : MonoBehaviour {
             Expression e = new Expression("Pow([value], 2)");
             e.Parameters["value"] = i;
             float value = float.Parse(e.Evaluate().ToString());
-            Instantiate(dot, new Vector3(i, value, 0), Quaternion.identity);
+            GameObject d = Instantiate(dot, new Vector3(i, value, 0), Quaternion.identity);
+            d.tag = "Value";
         }
     }
 }
