@@ -12,13 +12,22 @@ public class Dot : MonoBehaviour {
 
     private SpriteRenderer spriteRenderer;
 
-    private void Start()
+    private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        GetPropertiesOfSpritePrefab(normal);
-
     }
 
+    private void Start()
+    {
+        GetPropertiesOfSpritePrefab(normal);
+    }
+    
+    public void SetObjectColor(Color color)
+    {
+        normal.GetComponent<SpriteRenderer>().color = color;
+        glowing.GetComponent<SpriteRenderer>().color = color;
+        spriteRenderer.color = color;
+    }
 
     private void OnMouseEnter()
     {
