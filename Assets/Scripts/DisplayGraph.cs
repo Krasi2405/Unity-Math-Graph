@@ -5,11 +5,13 @@ using NCalc;
 
 public class DisplayGraph : MonoBehaviour {
 
+    public Transform dotContainer;
     public GameObject dot;
     public float valueStart;
     public float valueEnd;
     public float valueStep;
     public string mathFunction;
+    
 
 	void Start () {
         for (float i = valueStart; i <= valueEnd; i += valueStep)
@@ -19,6 +21,7 @@ public class DisplayGraph : MonoBehaviour {
             float value = float.Parse(e.Evaluate().ToString());
             GameObject d = Instantiate(dot, new Vector3(i, value, 0), Quaternion.identity);
             d.tag = "Value";
+            d.transform.SetParent(dotContainer);
         }
     }
 }

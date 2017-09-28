@@ -7,6 +7,8 @@ public class CreateMap : MonoBehaviour {
     public GameObject verticalLine;
     public GameObject horizontalLine;
     public GameObject dot;
+    public Transform mapContainer;
+    public Transform dotContainer;
 
     [SerializeField]
     public int width = 20;
@@ -25,9 +27,12 @@ public class CreateMap : MonoBehaviour {
         {
             for (int j = -height; j <= height; j++)
             {
-                Instantiate(verticalLine, new Vector3(i, j, 0), Quaternion.identity);
-                Instantiate(horizontalLine, new Vector3(i, j, 0), Quaternion.identity);
-                Instantiate(dot, new Vector3(i, j, 0), Quaternion.identity);
+                GameObject vLine = Instantiate(verticalLine, new Vector3(i, j, 0), Quaternion.identity);
+                vLine.transform.SetParent(mapContainer);
+                GameObject hLine = Instantiate(horizontalLine, new Vector3(i, j, 0), Quaternion.identity);
+                hLine.transform.SetParent(mapContainer);
+                GameObject d = Instantiate(dot, new Vector3(i, j, 0), Quaternion.identity);
+                d.transform.SetParent(dotContainer);
             }
         }
 
@@ -36,6 +41,7 @@ public class CreateMap : MonoBehaviour {
         {
             GameObject line = Instantiate(horizontalLine, new Vector3(i, 0, 0), Quaternion.identity);
             line.transform.localScale *= 8;
+            line.transform.SetParent(dotContainer);
         }
 
 
@@ -44,6 +50,7 @@ public class CreateMap : MonoBehaviour {
         {
             GameObject line = Instantiate(verticalLine, new Vector3(0, i, 0), Quaternion.identity);
             line.transform.localScale *= 8;
+            line.transform.SetParent(dotContainer);
         }
 
         
