@@ -41,6 +41,7 @@ public class CameraMovement : MonoBehaviour {
             if (Input.GetKey(KeyCode.W))
             {
                 transform.Translate(new Vector3(0, GetCameraMoveSpeed(), 0));
+
             }
 
             if (Input.GetKey(KeyCode.S))

@@ -10,18 +10,9 @@ public class CreateMap : MonoBehaviour {
     public Transform mapContainer;
     public Transform dotContainer;
 
-    [SerializeField]
-    public int width = 20;
 
-    [SerializeField]
-    public int height = 20;
-
-	void Start () {
-        KeepInBounds script = Camera.main.GetComponent<KeepInBounds>();
-        script.x = width;
-        script.y = height;
-
-
+    public void GenerateMap(int width, int height)
+    {
         // Create grid cells
         for (int i = -width; i <= width; i++)
         {
@@ -52,7 +43,18 @@ public class CreateMap : MonoBehaviour {
             line.transform.localScale *= 8;
             line.transform.SetParent(dotContainer);
         }
+    }
 
-        
+    public void RemoveMap()
+    {
+        foreach(Transform transform in mapContainer)
+        {
+            Destroy(transform.gameObject);
+        }
+
+        foreach (Transform transform in mapContainer)
+        {
+            Destroy(transform.gameObject);
+        }
     }
 }
