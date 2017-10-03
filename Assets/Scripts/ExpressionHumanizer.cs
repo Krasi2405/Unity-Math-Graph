@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Text.RegularExpressions;
 
-public class ExpressionHumanizer {
+public static class ExpressionHumanizer {
 
 	
-    public string Humanize(string expression)
+    public static string Humanize(string expression)
     {
         expression = HandleMultiplication(expression);
         expression = HandleSquaring(expression);
@@ -15,7 +15,7 @@ public class ExpressionHumanizer {
     }
 
 
-    private string HandleMultiplication(string expression)
+    private static string HandleMultiplication(string expression)
     {
         MatchCollection matchCollection = Regex.Matches(expression, @"(\d+)(\w+)");
         foreach(Match match in matchCollection)
@@ -28,7 +28,7 @@ public class ExpressionHumanizer {
     }
 
 
-    private string HandleSquaring(string expression)
+    private static string HandleSquaring(string expression)
     {
         MatchCollection matchCollection = Regex.Matches(
             expression,
@@ -46,8 +46,9 @@ public class ExpressionHumanizer {
     }
 
 
-    private string HandleAbsoluteValue(string expression)
+    private static string HandleAbsoluteValue(string expression)
     {
+        string startExpression = expression;
         MatchCollection matchCollection = Regex.Matches(
             expression,
             @"\|(.+)\|");
@@ -56,6 +57,10 @@ public class ExpressionHumanizer {
             expression = expression.Replace(
                 match.ToString(),
                 "Abs(" + match.Groups[1].ToString() + ")");
+        }
+        if(startExpression != expression)
+        {
+            return HandleAbsoluteValue(expression);
         }
         return expression;
     }

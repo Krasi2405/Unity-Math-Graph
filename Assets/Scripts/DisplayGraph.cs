@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using NCalc;
 using UnityEngine.UI;
+using System.Text.RegularExpressions;
 
 public class DisplayGraph : MonoBehaviour {
 
@@ -22,10 +23,14 @@ public class DisplayGraph : MonoBehaviour {
     public void GenerateGraph(float valueStart, float valueEnd, float valueStep, string expression)
     {
         Color graphColor = GetRandomColor();
+        expression = ExpressionHumanizer.Humanize(expression);
+        
+
         for (float i = valueStart; i <= valueEnd; i += valueStep)
         {
-            Expression e = new Expression(expression);
-            e.Parameters["x"] = i;
+            // TODO: Add recognizing any parameter name, not just x
+            string calculation = expression.Replace("x", i.ToString());
+            Expression e = new Expression(calculation);
             float value = float.Parse(e.Evaluate().ToString());
             GameObject d = Instantiate(dot, new Vector3(i, value, 0), Quaternion.identity);
             d.transform.SetParent(dotContainer);
