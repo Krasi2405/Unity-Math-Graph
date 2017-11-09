@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using NCalc;
-using UnityEngine.UI;
-using System.Text.RegularExpressions;
 
 public class DisplayGraph : MonoBehaviour {
 
@@ -29,8 +27,8 @@ public class DisplayGraph : MonoBehaviour {
         for (float i = valueStart; i <= valueEnd; i += valueStep)
         {
             // TODO: Add recognizing any parameter name, not just x
-            string calculation = expression.Replace("x", i.ToString());
-            Expression e = new Expression(calculation);
+            Expression e = new Expression(expression);
+            e.Parameters["x"] = i.ToString();
             float value = float.Parse(e.Evaluate().ToString());
             GameObject d = Instantiate(dot, new Vector3(i, value, 0), Quaternion.identity);
             d.transform.SetParent(dotContainer);
